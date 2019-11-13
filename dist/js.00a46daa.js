@@ -507,6 +507,8 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 var $uploadButton = window.document.querySelector('#upload');
 var $img = document.querySelector('img');
 var $uploadFakeButton = window.document.querySelector('.upload-image');
+var $downloadAsText = window.document.querySelector('#downloadFile');
+var store = [];
 $uploadFakeButton.addEventListener('click', function () {
   return $uploadButton.click();
 });
@@ -528,6 +530,7 @@ $img.addEventListener('load', function (_ref) {
 
   var color = _palette.rgbToHex.apply(void 0, _toConsumableArray(mainColor));
 
+  store = colors;
   renderColorElements(colors.map(function (c) {
     return createColorElement(c);
   }));
@@ -537,6 +540,9 @@ $uploadButton.addEventListener('change', function (fn) {
   toBase64(fn.target.files[0]).then(function (r) {
     $img.setAttribute('src', r);
   });
+});
+$downloadAsText.addEventListener('click', function () {
+  if (store.length > 0) download('palette.txt', store.join('\r\n'));
 });
 /**
  *
@@ -683,6 +689,16 @@ function copyToClipboard(str) {
   document.execCommand('copy');
   document.body.removeChild(el);
 }
+
+function download(filename, text) {
+  var element = document.createElement('a');
+  element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
+  element.setAttribute('download', filename);
+  element.style.display = 'none';
+  document.body.appendChild(element);
+  element.click();
+  document.body.removeChild(element);
+}
 },{"./palette":"js/palette.js"}],"../node_modules/parcel/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
@@ -711,7 +727,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50936" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51671" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

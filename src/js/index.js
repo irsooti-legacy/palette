@@ -4,6 +4,9 @@ import colorThief, { rgbToHex } from './palette';
 const $uploadButton = window.document.querySelector('#upload');
 const $img = document.querySelector('img');
 const $uploadFakeButton = window.document.querySelector('.upload-image');
+const $downloadAsText = window.document.querySelector('#downloadFile');
+
+let store = [];
 
 $uploadFakeButton.addEventListener('click', () => $uploadButton.click());
 $img.parentElement.addEventListener('drop', dropHandler);
@@ -17,6 +20,7 @@ $img.addEventListener('load', function({ target }) {
 
   const colors = palettes.map(r => rgbToHex(...r));
   const color = rgbToHex(...mainColor);
+  store = colors;
 
   renderColorElements(colors.map(c => createColorElement(c)));
   renderMainColorElement(createColorElement(color, 'big-primary'));
@@ -26,6 +30,10 @@ $uploadButton.addEventListener('change', fn => {
   toBase64(fn.target.files[0]).then(r => {
     $img.setAttribute('src', r);
   });
+});
+
+$downloadAsText.addEventListener('click', () => {
+  if (store.length > 0) download('palette.txt', store.join('\r\n'));
 });
 
 /**
@@ -140,4 +148,20 @@ function copyToClipboard(str) {
   el.select();
   document.execCommand('copy');
   document.body.removeChild(el);
+}
+
+function download(filename, text) {
+  var element = document.createElement('a');
+  element.setAttribute(
+    'href',
+    'data:text/plain;charset=utf-8,' + encodeURIComponent(text)
+  );
+  element.setAttribute('download', filename);
+
+  element.style.display = 'none';
+  document.body.appendChild(element);
+
+  element.click();
+
+  document.body.removeChild(element);
 }

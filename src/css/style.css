@@ -1,5 +1,6 @@
 body {
   padding-bottom: 104px;
+  font-family: 'Segoe UI', 'San Francisco', 'Roboto';
   background-color: aliceblue;
 }
 
@@ -102,4 +103,9 @@ body {
 #main-color,
 #colors {
   display: inline-block;
+}
+
+#downloadFile {
+  color: rgb(0, 68, 255);
+  cursor: pointer;
 }
