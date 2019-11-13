@@ -1,0 +1,23 @@
+{
+  "name": "my-palette",
+  "version": "1.0.0",
+  "description": "A simple palette generator",
+  "main": "index.js",
+  "scripts": {
+    "dev": "parcel src/index.html",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "parcel build src/index.html"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "eslint": "^6.6.0",
+    "eslint-config-prettier": "^6.5.0",
+    "eslint-plugin-prettier": "^3.1.1",
+    "parcel": "^1.12.4",
+    "prettier": "^1.19.1"
+  },
+  "dependencies": {
+    "colorthief": "^2.3.0"
+  }
+}

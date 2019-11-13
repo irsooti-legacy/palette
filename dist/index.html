@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="/style.78032849.css">
+    <link rel="shortcut icon" href="/favicon.08708974.png" type="image/x-icon">
+    <title>Daniele Irsuti - Palette generator</title>
+  <script src="/style.78032849.js"></script></head>
+  <body>
+    <div class="container">
+      <div class="image-container">
+        <img id="image" src="/demo.f54a8fb3.jpg" alt="" crossorigin="anonymous" srcset="">
+        <div class="upload-image">
+          <img src="/uploadsvg.c451f72f.svg" alt="Upload image">
+        </div>
+      </div>
+      <input style="display: none;" id="upload" type="file">
+      <div class="colors-bar">
+        <div id="main-color"></div>
+        <div id="colors"></div>
+      </div>
+    </div>
+
+    <script src="/js.00a46daa.js"></script>
+    <script>// Check that service workers are supported
+if ('serviceWorker' in navigator) {
+  // Use the window load event to keep the page load performant
+  window.addEventListener('load', function () {
+    navigator.serviceWorker.register("/js/service-worker.js");
+  });
+}</script>
+  </body>
+</html>
